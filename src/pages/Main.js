@@ -13,6 +13,7 @@ function Main() {
     const [newTask, setNewTask] = useState('');
 
 
+
     useEffect(() => {
         loadTasks()
     }, []);
@@ -34,17 +35,11 @@ function Main() {
 
         await api.post('/tasks', {
             content: newTask,
-            done: false,
         });
 
         setNewTask('');
     };
 
-    async function setCheck(task_id, checked) {
-        await api.put(`/tasks/${task_id}`, {
-            done: !checked
-        })
-    }
 
     async function removeTask(task_id) {
         await api.delete(`/tasks/${task_id}`);
@@ -69,7 +64,7 @@ function Main() {
                 <FlatList
                     data={tasks}
                     keyExtractor={item => item.id}
-                    renderItem={({ item }) => <CheckBox item={item} onCheckPress={setCheck} onButtonPress={removeTask} />}
+                    renderItem={({ item }) => <CheckBox item={item} onButtonPress={removeTask} />}
 
                 />
 

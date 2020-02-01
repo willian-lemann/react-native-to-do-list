@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { CheckBox, Icon } from 'react-native-elements';
 
 
-function Checkbox({ item, onCheckPress, onButtonPress }) {
+function Checkbox({ item, onButtonPress }) {
+
+    const [checked, setChecked] = useState(false);
+
     return (
         <View style={styles.Container}>
             <CheckBox
@@ -12,8 +15,8 @@ function Checkbox({ item, onCheckPress, onButtonPress }) {
                 containerStyle={styles.checkboxContainer}
                 textStyle={styles.checkbox}
                 checkedColor='#7159c1'
-                checked={item.done}
-                onPress={() => onCheckPress(item.id, item.done)}
+                checked={checked}
+                onPress={() => setChecked(!checked)}
             />
 
             <TouchableOpacity style={styles.button} onPress={() => onButtonPress(item.id)}>
