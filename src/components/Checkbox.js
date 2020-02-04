@@ -10,8 +10,8 @@ function Checkbox({ item, onButtonPress }) {
     return (
         <View style={styles.Container}>
             <CheckBox
-                key={item.id}
-                title={item.content}
+                key={item._id}
+                title={item.title}
                 containerStyle={styles.checkboxContainer}
                 textStyle={styles.checkbox}
                 checkedColor='#7159c1'
@@ -19,7 +19,7 @@ function Checkbox({ item, onButtonPress }) {
                 onPress={() => setChecked(!checked)}
             />
 
-            <TouchableOpacity style={styles.button} onPress={() => onButtonPress(item.id)}>
+            <TouchableOpacity style={styles.button} onPress={() => onButtonPress(item._id)}>
                 <Icon iconStyle={styles.icon} name="delete" />
             </TouchableOpacity>
 
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
 
     Container: {
         flexDirection: 'row',
-        alignItems: 'center',
-
+        alignItems: 'center', 
     },
 
     checkbox: {
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     },
 
     checkboxContainer: {
-        flexDirection: 'row',
+        justifyContent:'center',
         backgroundColor: '#fff',
         height: 60,
         width: 320,
@@ -49,14 +48,15 @@ const styles = StyleSheet.create({
     },
 
     button: {
+        right:11,
         alignItems: 'center',
+        justifyContent:'center',
         height: 60,
         width: 60,
         backgroundColor: '#fff'
     },
 
-    icon: {
-        marginTop: 18,
+    icon: {  
         color: '#f05a5b'
     },
 

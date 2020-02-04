@@ -25,7 +25,7 @@ function Main() {
 
     async function loadTasks() {
         const response = await api.get('/tasks');
-        setTasks(response.data)
+        setTasks(response.data);
     }
 
 
@@ -34,7 +34,7 @@ function Main() {
             return
 
         await api.post('/tasks', {
-            content: newTask,
+            title: newTask,
         });
 
         setNewTask('');
@@ -47,29 +47,25 @@ function Main() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Digite uma task"
-                    value={newTask}
-                    onChangeText={setNewTask}
-                    placeholderTextColor="#7159c1"
-                />
 
+            <TextInput
+                style={styles.input}
+                placeholder="Digite uma task"
+                value={newTask}
+                onChangeText={setNewTask}
+                placeholderTextColor="#7159c1"
+            />
 
-                <TouchableOpacity style={styles.button} onPress={addTask}>
-                    <Icon name="add" iconStyle={styles.buttonIcon} />
-                </TouchableOpacity>
+            <FlatList
+                data={tasks}
+                keyExtractor={item => item._id}
+                renderItem={({ item }) => <CheckBox item={item} onButtonPress={removeTask} />}
+            />
 
-                <FlatList
-                    data={tasks}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => <CheckBox item={item} onButtonPress={removeTask} />}
+            <TouchableOpacity style={styles.button} onPress={addTask}>
+                <Icon name="add" iconStyle={styles.buttonIcon} />
+            </TouchableOpacity>
 
-                />
-
-
-            </View>
         </SafeAreaView>
     );
 }
@@ -78,7 +74,8 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+
     },
 
     input: {
@@ -93,9 +90,8 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        position: 'absolute',
-        top: 580,
-        right: 10,
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
         height: 100,
         width: 100,
         borderRadius: 50,
@@ -106,7 +102,7 @@ const styles = StyleSheet.create({
     buttonIcon: {
         color: '#fff',
         fontSize: 50,
-        top: 25,
+
     },
 
 })

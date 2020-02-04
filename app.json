@@ -1,13 +1,12 @@
 {
   "expo": {
-    "name": "react-native-to-do-list",
+    "name": "RocketList",
     "slug": "react-native-to-do-list",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,7 +14,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7159c1"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +23,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.willianlemann.rocketlist"
+    },
+    "android": {
+      "package": "com.willianlemann.rocketlist",
+      "versionCode": 1
     }
   }
 }
